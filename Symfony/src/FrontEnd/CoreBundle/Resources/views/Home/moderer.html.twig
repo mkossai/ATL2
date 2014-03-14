@@ -1,0 +1,40 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+
+        <div class="span-atl">
+        
+            <p class="text-atl"> 
+                <i class="icon-thumbs-up"></i>
+                {{ atl.content|raw }} ATL
+            </p>
+            <div class="info-atl">
+                
+                <div class="part-left">
+                    
+                    <p class="valide-atl">
+                        <a href="" title="" class="text-success">Bien mérité</a> 
+                        <span class="muted">({{ atl.merite }} ) - </span>
+                        <a href="" title="" class="text-info">C'est bien une ATL </a>
+                        <span class="muted"> ({{ atl.bonne }} ) - </span>
+                        <a href="" title="" class="text-success">Comment</a>
+                        <span class="muted"> (473)</span>
+                    </p>
+                    
+                    <p class="date-atl">
+                        Le {% if atl.publishedAt %}{{ atl.publishedAt|date('Y-m-d H:i:s') }}{% endif %} par {{ atl.auteur }} - 
+                        <a href="" title="">(Inclassable)</a>
+                    </p>                  
+                    
+                </div>
+                
+                <div class="part-right">
+                    <div class="fb-like" data-href="https://www.facebook.com/pages/EBusiness-interactive/533952619981617?ref=hl" data-send="false" data-layout="button_count" data-width="140" data-show-faces="false" data-font="lucida grande"></div>             
+                </div>
+                
+            </div>
+            
+        </div>
+
+{% endblock %}

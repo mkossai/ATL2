@@ -1,0 +1,67 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<script src="{{ asset('bundles/core/js/jquery.js') }}"></script>
+
+   {% for atl in atls %}
+        <div class="span-atl">
+        
+            <p class="text-atl"> 
+                <i class="icon-thumbs-up"></i>
+                {{ atl.content|raw }} ATL
+            </p>
+            <div class="info-atl">
+                
+                <div class="part-left">
+                    
+                    <p class="valide-atl">
+                        <a href="{{ path('CoreBundle_merite', {id: atl.id }) }}" title="Bien mérité ATL" class="text-success" id="merite{{ atl.id }}">Bien mérité</a> 
+
+                            <script type="text/javascript">
+                            $(function() {
+                            $("#merite{{ atl.id }}")
+                                    .click(
+                                            "href",
+                                            function() {
+                                                $.ajax( {
+                                                            url : $(this).attr('href'),
+                                                            type : 'GET',
+                                                            data : $(this).serializeArray(),
+                                                            success : function(data) {
+                                                                $('#success{{ atl.id }}').html(data);
+                                                                effacer();
+                                                            },
+                                                            error : function(data) {
+
+                                                            },
+                                                            beforeSend : function() {
+
+                                                            },
+                                                            complete : function() {
+                                                                
+                                                            }
+                                                        });
+                                                return false;
+                                            });  
+                            });              
+                            </script>                           
+                       <span class="muted"> ( <span id="success{{ atl.id }}">{{ atl.merite }} </span> ) - </span>
+                        <a href="" title="" class="text-info">C'est bien une ATL </a>
+                    </p>
+                    
+                    <p class="date-atl">
+                        Le {% if atl.publishedAt %}{{ atl.publishedAt|date('Y-m-d H:i:s') }}{% endif %} par {{ atl.auteur }} - 
+                        <a href="" title="">(Inclassable)</a>
+                    </p>                  
+                    
+                </div>
+                <div class="part-right">
+                    <div class="fb-like" data-href="https://www.facebook.com/pages/EBusiness-interactive/533952619981617?ref=hl" data-send="false" data-layout="button_count" data-width="140" data-show-faces="false" data-font="lucida grande"></div>             
+                </div>
+                
+            </div>
+            
+        </div>
+     
+    {% endfor %} 
+{% endblock %}

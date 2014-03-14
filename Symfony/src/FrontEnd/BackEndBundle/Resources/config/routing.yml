@@ -1,0 +1,11 @@
+back_end_homepage:
+    pattern:  /
+    defaults: { _controller: BackEndBundle:Home:index }
+
+BackEndBundle_admin_achtralik:
+    resource: "@BackEndBundle/Resources/config/routing/achtralik.yml"
+    prefix:   /achtralik
+
+BackEndBundle_categoryatl:
+    resource: "@BackEndBundle/Resources/config/routing/categoryatl.yml"
+    prefix:   /categoryatl

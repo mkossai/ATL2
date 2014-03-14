@@ -1,0 +1,70 @@
+{% extends "::admin.html.twig" %}
+{% block title %} Désactiver/activer des ATLS {{ parent() }} {% endblock %}
+
+{% block body %}
+
+    <div class="page-header">
+           <h1>Valider des ATLS </h1>
+        </div>
+          {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-error">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}         
+            {% for bloc in entities %}
+            <div class="span-atl-valide">
+              <form method="post" action=" {{ path("admin_achtralik_validate") }}"> 
+                  <div class="span-atl">
+                    
+                        <p class="text-atl"> 
+                            <i class="icon-thumbs-up"></i>
+                            {{ bloc.content }} ATL
+                        </p>
+                        <div class="info-atl">
+                            
+                            <div class="part-left">
+                                
+                                <p class="valide-atl">
+                                    <a href="" title="" class="text-success">Bien mérité</a> 
+                                    <span class="muted">(1054) - </span>
+                                    <a href="" title="" class="text-info">C'est bien une ATL </a>
+                                    <span class="muted"> (2487) - </span>
+                                    <a href="" title="" class="text-success">Comment</a>
+                                    <span class="muted"> (473)</span>
+                                </p>
+                                
+                                <p class="date-atl">
+                                    Le {% if bloc.publishedAt %}{{ bloc.publishedAt|date('Y-m-d H:i:s') }}{% endif %} par {{ bloc.auteur }} - 
+                                    {% if bloc.createdAt %}{{ bloc.createdAt|date('Y-m-d H:i:s') }}{% endif %}
+                                    <a href="" title="">(Inclassable)</a>
+                                </p>
+                                    {# L'utilisateur est-il admin ? #}
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        {# L'utilisateur est admin ! #}
+                                            <li>
+                                                <a href="{{ path('admin_achtralik_show', { 'id': bloc.id }) }}">show</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('admin_achtralik_edit', { 'id': bloc.id }) }}">edit</a>
+                                            </li> 
+                                    {% endif %}                     
+                                
+                            </div>
+                        </div>            
+                    </div>
+
+                    <div class="span3" style="padding-top:10px;padding-left:10px;">
+                        <input type="hidden" value="{{ bloc.id }}" name="idAtl[]" /><input type="text" value="{{ bloc.disabled }}" name="actifAls[]" /> Valider
+                    </div>
+                    
+                    <div class="span1" style="padding-top:10px;">
+                        <input type="submit" value="OK" class="btn btn-success" style="width:45px;" />
+                    </div>
+            </div>             
+            {% endfor %}
+
+
+{% endblock %}
+
+
+ 

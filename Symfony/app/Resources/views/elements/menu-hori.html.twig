@@ -1,0 +1,17 @@
+<!--   ****____ PUB ADSENSE ____**** -->
+<div class="row">
+	<div class="span10 offset-banner-pub">
+		  <img src="{{ asset('bundles/core/pictures/ads.png') }}" alt="" />
+	</div>
+
+<!--   ****____ MENU CATEGORIES  ____**** -->
+
+  <div class="span12 menu-btn">
+  <a href="" title=""><button class="btn btn-danger" type="submit">TOP ATL</button></a>
+  {% for cat in cats %}
+  <a href="{{ path('CoreBundle_category_atl', {'name': cat.name}) }}" title=""><button class="btn btn-danger" type="submit">{{ cat.name }}</button></a>
+  {% endfor %}
+
+	<a onclick="$('#ATL').toggle();" style="cursor:pointer;" title="ACH TRA LIK LYOM ?" alt="ACH TRA LIK LYOM ?"><button class="btn btn-warning" type="submit">Ach Tra Lik ?</button></a>
+  </div>
+</div>

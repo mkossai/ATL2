@@ -1,0 +1,94 @@
+{# L'utilisateur est-il utilisateur normal ? #}
+{% if is_granted('ROLE_USER') %}
+    {# L'utilisateur est user ! #}
+			<div class="span-atl" id="ATL" style="display:none;">
+					
+				<div class="head-title-ATL">
+					<p>Ach Tra Lik Lyom ?</p>
+				</div>
+
+				<p class="text-atl">
+					<strong class="concept"> <i class="icon-th-large"></i>	 Suivez le Concept :</strong>
+					Une anecdote qui commence par "<strong>Lyom,</strong>" et qui se termine par "<strong>ATL</strong>".
+				</p>
+				<p class="text-atl">
+					<strong class="concept"> <i class="icon-th-large"></i>	 Essayer :</strong>
+					 Minimiser les fautes d'orthographes pour que votre ATL soit claire pour tout les visiteurs.
+				</p>
+				<p class="text-error" style="padding:4px 11px;">
+					N'utilisez pas cet espace pour des discussions personnelles ou pour faire l'objet d'une publicité.
+				</p>
+				<br />	
+		
+				<form method="post" name="form-ATL" id="publicate_atl" action="{{ path('CoreBundle_publicate_atl') }}">
+					<table class="table-condensed">
+						<tr>
+							<td>
+								Pseudo : 
+							</td>
+							<td>
+								<input type="text" class="input-small" id="atl_pseudo" name="pseudo" value="{{ app.user.username }}" />
+								<div id="errorPseudo"></div>
+							</td>
+							<td class="tablea">
+								Sexe : 
+							</td>
+							<td>
+								<select name="sexe" class="input-medium" id="sex_atl" />
+									<option selected>Choisir</option>
+									<option>Femme</option>
+									<option>Homme</option>
+								</select>
+								<div id="errorSex"></div>
+							</td>
+							<td class="tablea">
+								Catégorie : 
+							</td>
+							<td>
+								<select id="frontend_backendbundle_achtraliktype_category" name="frontend_backendbundle_achtraliktype[category]" required="required">
+								  <option selected>Choisir</option>
+								  {% for cat in cats %}
+								  <option value="{{ cat.id }}">{{ cat.name }}</option>
+								  {% endfor %}	
+								</select>
+								<div id="errorCat"></div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6">
+							<textarea id="frontend_backendbundle_achtraliktype_content" MAXLENGTH="350"  name="frontend_backendbundle_achtraliktype[content]" required="required"></textarea>
+							<div id="errorCont"></div>
+							</td>
+						</tr>			
+						<tr>
+							<td colspan="3">
+								<div class="checkbox"><label><input type="checkbox" name="prevenir">
+								<strong>M'envoyer un mail après validation ATL</strong></label></div>
+							</td>
+							<td colspan="2" align="right" style="font-size:12px;">
+								<script>
+								displaylimit("","max",350)
+								</script>
+				   
+							</td>
+							<td>
+								<input type="submit" value="Publier mon ATL" class="btn btn-warning" />
+							</td>
+						</tr>
+					</table>
+			        <div id="sending">
+			            <div class="progress progress-striped active">
+			                <div class="bar" style="width: 40%;"> </div> 
+			            </div>
+			        </div>        
+			        <div id="success"></div> 				   
+				</form>
+			</div>
+
+{% else %}
+<div class="span-atl" id="ATL" style="display:none;">
+		Utiliser vos identifiants pour vous connecter afin de pouvoir publier votre ATL 
+		<a href="">ici</a>, ou créer votre compte 
+		<a href="">ici</a>
+</div>
+{% endif %}

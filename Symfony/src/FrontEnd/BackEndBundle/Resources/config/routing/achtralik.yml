@@ -1,0 +1,38 @@
+admin_achtralik:
+    pattern:  /
+    defaults: { _controller: "BackEndBundle:Achtralik:index" }
+
+admin_achtralik_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BackEndBundle:Achtralik:show" }
+
+admin_achtralik_new:
+    pattern:  /new
+    defaults: { _controller: "BackEndBundle:Achtralik:new" }
+
+admin_achtralik_create:
+    pattern:  /create
+    defaults: { _controller: "BackEndBundle:Achtralik:create" }
+    requirements: { _method: post }
+
+admin_achtralik_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BackEndBundle:Achtralik:edit" }
+
+admin_achtralik_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BackEndBundle:Achtralik:update" }
+    requirements: { _method: post|put }
+
+admin_achtralik_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BackEndBundle:Achtralik:delete" }
+    requirements: { _method: post|delete }
+
+admin_achtralik_validate:
+   pattern:  /validate
+   defaults: { _controller: "BackEndBundle:Achtralik:validate" }
+admin_achtralik_deserve:
+   pattern:  /deserve
+   defaults: { _controller: "BackEndBundle:Achtralik:deserve" }
+   requirements: { _method: POST}

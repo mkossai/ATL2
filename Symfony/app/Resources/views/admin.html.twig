@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} | Administration ATL {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/core/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('bundles/core/css/bootstrap-responsive.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('bundles/core/css/docs.css') }}" type="text/css" rel="stylesheet" />
+
+        {% endblock %}
+
+    <script src="{{ asset('bundles/core/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/core/js/jquery.js') }}"></script>
+    <script src="{{ asset('bundles/core/js/isajax.js') }}"></script>
+    <script src="{{ asset('bundles/core/js/bootstrap-dropdown.js') }}"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#" title="Ach Tra Lik, Vos histoires de la vie quotidienne">
+        <img src="{{ asset('bundles/core/pictures/logo.png') }}" alt="Ach Tra Lik, Vos histoires de la vie quotidienne" />
+      </a>
+      <div class="nav-collapse collapse">
+    
+        <ul class="nav nav-pills">
+          <li><a href="atl-admin-stats.php" title="Tableau de bord">Tableaux de bord</a></li>
+          <li><a href="{{ path('admin_achtralik_validate') }}" title="Validation ATL">Validation</a></li>
+          <li><a href="{{ path('admin_achtralik') }}" title="Validation ATL">ATL</a></li>
+          <li><a href="atl-admin-comment.php" title="Commenter ATL">Commentaires</a></li> 
+          <li><a href="atl-admin-contact.php" title="Commenter ATL">Contact</a></li>  
+          <li><a href="{{ path('CoreBundle_homepage') }}" title="Commenter ATL" target="_blank">Aller vers le Site</a></li> 
+          
+           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                
+              <li>
+                <a href="{{ path('fos_user_security_logout') }}" class="navbar-link" title="Déconnexion">
+                      <img src="{{ asset('bundles/core/pictures/logout.png') }}" border="0" />
+                
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+              </li> 
+            {% endif %}             
+            
+        </ul>
+        
+        <p class="navbar-text pull-right" style="padding-top:5px;padding-right:10px;">
+          <a href="#" title="Ach Tra Lik, Vos histoires de la vie quotidienne">
+            <img src="{{ asset('bundles/core/pictures/logo-ar.png') }}" alt="Ach Tra Lik, Vos histoires de la vie quotidienne" />
+          </a>
+        </p>
+      
+      </div>
+    </div>
+  </div>
+</div>    
+    <div class="container">
+      <div class="row-fluid">
+        <div class="span3">
+        </div> 
+        <div class="span9" style="margin-top: 100px;">
+
+          {% block body %}
+                     
+
+          {% endblock %}
+        </div><!--/span-->
+      </div>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

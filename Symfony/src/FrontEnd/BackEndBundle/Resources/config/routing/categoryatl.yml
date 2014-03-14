@@ -1,0 +1,30 @@
+categoryatl:
+    pattern:  /
+    defaults: { _controller: "BackEndBundle:CategoryAtl:index" }
+
+categoryatl_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BackEndBundle:CategoryAtl:show" }
+
+categoryatl_new:
+    pattern:  /new
+    defaults: { _controller: "BackEndBundle:CategoryAtl:new" }
+
+categoryatl_create:
+    pattern:  /create
+    defaults: { _controller: "BackEndBundle:CategoryAtl:create" }
+    requirements: { _method: post }
+
+categoryatl_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BackEndBundle:CategoryAtl:edit" }
+
+categoryatl_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BackEndBundle:CategoryAtl:update" }
+    requirements: { _method: post|put }
+
+categoryatl_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BackEndBundle:CategoryAtl:delete" }
+    requirements: { _method: post|delete }

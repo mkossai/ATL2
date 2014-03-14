@@ -1,0 +1,23 @@
+FrontEnd\BackEndBundle\Entity\CategoryAtl:
+    type: entity
+    table: null
+    repositoryClass: FrontEnd\BackEndBundle\Entity\CategoryAtlRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+            column: created_at
+        createdBy:
+            type: string
+            length: 255
+            column: created_by
+        atls:
+            type: object
+    lifecycleCallbacks: {  }

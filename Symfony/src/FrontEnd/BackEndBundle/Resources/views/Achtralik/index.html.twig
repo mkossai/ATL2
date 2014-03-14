@@ -1,0 +1,121 @@
+{% extends '::admin.html.twig' %}
+
+{% block body -%}
+    <h1>Achtralik list</h1>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_achtralik_new') }}">
+                Create a new entry
+            </a>
+        </li>
+        <li><a href="{{ path('admin_achtralik_validate') }}">Valider les ATL</a></li>
+    </ul>
+   {% for atl in entities %}
+
+        <div class="span-atl">
+        
+            <p class="text-atl"> 
+                <i class="icon-thumbs-up"></i>
+                {{ atl.content }} ATL
+            </p>
+            <div class="info-atl">
+                
+                <div class="part-left">
+                    
+                    <p class="valide-atl">
+                        <a href="" title="" class="text-success">Bien mérité</a> 
+                        <span class="muted">(1054) - </span>
+                        <a href="" title="" class="text-info">C'est bien une ATL </a>
+                        <span class="muted"> (2487) - </span>
+                        <a href="" title="" class="text-success">Comment</a>
+                        <span class="muted"> (473)</span>
+                    </p>
+                    
+                    <p class="date-atl">
+                        Le {% if atl.publishedAt %}{{ atl.publishedAt|date('Y-m-d H:i:s') }}{% endif %} par {{ atl.auteur }} - 
+                        {% if atl.createdAt %}{{ atl.createdAt|date('Y-m-d H:i:s') }}{% endif %}
+                        <a href="" title="">(Inclassable)</a>
+                    </p>
+                        {# L'utilisateur est-il admin ? #}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            {# L'utilisateur est admin ! #}
+                                <li>
+                                    <a href="{{ path('admin_achtralik_show', { 'id': atl.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_achtralik_edit', { 'id': atl.id }) }}">edit</a>
+                                </li> 
+                        {% endif %}                     
+                    
+                </div>
+            </div>            
+        </div>
+            <div class="span-atl-valide">
+                <form action="{{ path('admin_achtralik_deserve') }}" method="POST" id="publicate_atl{{ atl.id }}">
+                    <div class="span3" style="padding-top:10px;padding-left:10px;">
+                        <input type="hidden" value="{{ atl.id }}" name="idAtl[]" /><input type="text" name="countmerite[]" value="{{ atl.merite }}" id="count{{ atl.id }}" class="input-mini" style="vertical-align:middle;" /> Bien mérité
+                    </div>
+                    
+                    <div class="span3" style="padding-top:10px;padding-left:10px;" >
+                        <input type="text" name="coountvalide[]" value="{{ atl.bonne }}" id="bonne{{ atl.id }}" class="input-mini" style="vertical-align:middle;" /> C'est bien une ATL             
+                    </div>
+                    
+                    <div class="span1" style="padding-top:10px;">
+                        <input type="submit" value="OK" class="btn btn-success" style="width:45px;" />
+                    </div>
+                    <div id="success{{ atl.id }}"></div>
+                </form>
+                <script type="text/javascript">
+                $(function() {
+                $("#publicate_atl{{ atl.id }}")
+                        .submit(
+                                "submit",
+                                function() {
+                                    $.ajax( {
+                                                url : $(this).attr('action'),
+                                                type : 'POST',
+                                                data : $(this).serializeArray(),
+                                                success : function(data) {
+                                                    $('#success{{ atl.id }}').html(data);
+                                                    effacer();
+                                                },
+                                                error : function(data) {
+
+                                                },
+                                                beforeSend : function() {
+                                                    if($('#count{{ atl.id }}').val()==0)
+                                                        {
+                                                            alert('zid chwia a sat '+$('#count{{ atl.id }}').val());
+                                                            $('#count{{ atl.id }}').focus();
+                                                            $('#errorPseudo').html('<div class="alert alert-error" style="width:104px;"><font size="2px" face="calibri" color="red">Le champ PSEUDO est obligatoire </font></div>');
+                                                            return false;
+                                                        }
+                                                    else
+                                                    {
+                                                        $('#errorPseudo').html(''); 
+                                                    }
+                
+                                                    $('#success{{ atl.id }}').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;" id="sending"></div></div>');
+                                                    $('#sending').hide();
+
+                                                },
+                                                complete : function() {
+                                                    
+                                                }
+                                            });
+                                    return false;
+                                });  
+                });              
+                </script>
+  
+            </div>                
+                <div class="part-right">
+                    <div class="fb-like" data-href="https://www.facebook.com/pages/EBusiness-interactive/533952619981617?ref=hl" data-send="false" data-layout="button_count" data-width="140" data-show-faces="false" data-font="lucida grande"></div>             
+                </div>
+                
+            
+
+    {% endfor %}     
+
+    {% endblock %}

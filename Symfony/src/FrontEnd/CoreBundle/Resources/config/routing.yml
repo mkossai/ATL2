@@ -1,0 +1,20 @@
+CoreBundle_homepage:
+    pattern:  /
+    defaults: { _controller: CoreBundle:Home:index }
+
+CoreBundle_publicate_atl:
+   pattern:  /publicate/atl
+   defaults: { _controller: "CoreBundle:Home:publicate" }
+
+CoreBundle_category_atl:
+   pattern:  /category/{name}
+   defaults: { _controller: "CoreBundle:Home:category" }
+
+CoreBundle_moderer:
+   pattern:  /moderer/atl
+   defaults: { _controller: "CoreBundle:Home:moderer" }
+
+CoreBundle_merite:
+   pattern: /merite/atl/{id}
+   defaults: { _controller: "CoreBundle:Home:bienmerite" }
+

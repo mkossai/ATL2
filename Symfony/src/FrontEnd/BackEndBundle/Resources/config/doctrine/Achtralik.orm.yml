@@ -1,0 +1,39 @@
+FrontEnd\BackEndBundle\Entity\Achtralik:
+    type: entity
+    table: null
+    repositoryClass: FrontEnd\BackEndBundle\Entity\AchtralikRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        content:
+            type: text
+        ip:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+            column: created_at
+        publishedAt:
+            type: datetime
+            column: published_at
+        category:
+            type: object
+        auteur:
+            type: string
+            length: '80'
+        disabled: 
+            type: integer    
+        actif:
+            type: string
+            length: 4
+        sex:
+            type: string
+            length: '4' 
+        bonne:
+            type: integer 
+        merite:
+            type: integer  
+    lifecycleCallbacks: {  }

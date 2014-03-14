@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="content-language" content="fr" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="http://www.achtralik.ma/" />
+    <meta name="author" content=" Ach Tra Lik - http://www.achtralik.ma/" />
+    <meta name="google-site-verification" content="" />
+    <meta name="copyright" content="© Copyright 2013 ACH TRA LIK. Tous droits réservés" />  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/core/ico/favicon.ico') }}" />
+    <title> 
+            ACH TRA LIK : Vos histoires de la vie quotidienne
+    </title>
+    
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!-- DEBUT Style Générale -->
+            <link href="{{ asset('bundles/core/css/bootstrap.css') }}" title="Feuille de style du site communautaire ACH TRA LIK" rel="stylesheet" media="screen">
+            <link rel="shortcut icon" href="{{ asset('bundles/core/ico/favicon.ico') }}" type="image/ico" />
+            
+    <!--   FIN Style Générale   -->    
+    </head>
+    <body>
+    <!--   ****____ HEADER FIX ____**** -->
+
+    {% include 'elements/header.html.twig' %}
+    <!--   ****____ PUB ADSENSE ____**** -->
+
+    
+    <!--   ****____ MENU CATEGORIES  ____**** -->
+
+            {% include 'elements/menu-hori.html.twig' %}
+    <!--   ****____ CONTENT GENERAL ____**** -->
+    
+    <div class="row">
+        <!--   ****____ COLONNE CENTRALE ____**** -->
+
+        <div class="span-col-content">
+            {% include 'elements/publicate.html.twig' %}
+        {% block body %}{% endblock %}
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        {% block javascripts %}{% endblock %}
+        </div>        
+        <!--   ****____ COLONNE RIGHT ____**** -->
+        
+        <div class="span-col-right">
+            <img src="{{ asset('bundles/core/pictures/ads2.png') }}" alt="" style="border:solid 1px gray;" />   
+            <br /><br />
+            <div class="fb-like-box backs" data-href="https://www.facebook.com/pages/EBusiness-interactive/533952619981617" data-width="302" data-height="700" data-show-faces="true" data-stream="true" data-show-border="true" data-header="false"></div>         
+            <br />
+        </div>
+        
+    </div>
+<!-- REGOIGNER NOUS SUR FACE BOOK DANS LA PREMIERE PAGE DES LOUVERTURE  -->
+
+    <div class="clear"></div>
+    
+    <!--  ************************************ -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="{{ asset('bundles/core/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/core/js/jquery.js') }}"></script>
+    <script src="{{ asset('bundles/core/js/isajax.js') }}"></script>
+    <script src="{{ asset('bundles/core/js/bootstrap-dropdown.js') }}"></script>
+    
+    <script type="text/javascript">
+    $('.dropdown-toggle').dropdown()
+    </script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+    if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+    fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </body>
+</html>

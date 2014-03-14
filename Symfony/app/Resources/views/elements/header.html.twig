@@ -1,0 +1,81 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="{{ path('CoreBundle_homepage') }}" title="Ach Tra Lik, Vos histoires de la vie quotidienne">
+				<img src="{{ asset('bundles/core/pictures/logo.png') }}" alt="Ach Tra Lik, Vos histoires de la vie quotidienne" />
+			</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<li class="active"><a href="#" title="TOP ATL">TOP ATL</a></li>
+					<li><a href="#" title="Foire Aux Question AchTraLik">FAQ</a></li>
+					{# L'utilisateur est-il connecté ? #}
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					    {# L'utilisateur est connecté ! #}
+
+					    {# L'utilisateur est-il admin ? #}
+					    {% if is_granted('ROLE_ADMIN') %}
+					        {# L'utilisateur est admin ! #}
+					        <li><a href="{{ path('back_end_homepage') }}">Administration</a></li>
+					    {% endif %}	
+					     {% if is_granted('ROLE_MODERATOR') %}
+
+					     	<li>
+					     		<a href="{{ path('CoreBundle_moderer') }}">Modérer les ATLS</a>
+					     	</li>
+					    {% endif %}
+
+
+					{% else %}
+					    {# L'utilisateur n'est pas connecté ! #}
+					<li>
+						<a href="{{path('fos_user_registration_register')}}" title="Rejoignez-nous et inscrivez-vous dès maintenant" >S'incsrire
+						</a>
+
+					</li>
+					<li class="dropdown">
+					<a title="Login compte ATL" class="dropdown-toggle" data-toggle="dropdown" onclick="$('#show_cnx').toggle('slow');" href="#">
+						Connexion <span class="caret"></span>
+					</a>
+						<div class="dropdown-menu cnx" id="show_cnx" style="display: none;">
+						   {% include 'elements/login.html.twig' %}
+						</div>	
+						
+					</li> 
+					{% endif %}					
+
+					<li>
+						<a onclick="$('#show_search').toggle('slow');" style="cursor:pointer;" title="Rechercher ATL">
+							<img src="{{ asset('bundles/core/pictures/search.png') }}" alt="Rechercher ATL" />
+						</a>
+					</li>
+					<li>
+						<form  method="post" name="formul">
+							<input type="text" name="search-atl" id="show_search" class="span3" placeholder="Search ATL" />
+						</form>
+					</li>
+				</ul>
+				
+				<p class="navbar-text pull-right" style="padding-top:5px;padding-right:10px;">
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					    {# L'utilisateur est connecté ! #}
+					 
+						<div class="btn-group">
+						<button class="btn dropdown-toggle" data-toggle="dropdown">Compte <span class="caret"></span></button>
+						<ul class="dropdown-menu">
+						  <li><a href="{{ path('fos_user_profile_show') }}">Voir profile</a></li>
+						  <li><a href="{{ path('fos_user_profile_edit') }}">Editer profile</a></li>
+						  <li class="divider"></li>
+						  <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+						</ul>
+						</div>
+					
+					{% endif %}					
+					<a href="{{ path('CoreBundle_homepage') }}" title="Ach Tra Lik, Vos histoires de la vie quotidienne">
+						<img src="{{ asset('bundles/core/pictures/logo-ar.png') }}" alt="Ach Tra Lik, Vos histoires de la vie quotidienne" />
+					</a>
+				</p>
+			
+			</div>
+		</div>
+	</div>
+</div>

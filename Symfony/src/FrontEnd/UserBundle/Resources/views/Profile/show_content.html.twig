@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+{% block title %} Profile | {{ parent() }} {% endblock %}
+
+{% block body %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="head-title">
+	<p>Profile de l'utilisateur </p>
+</div>
+<div class="fos_user_user_show">
+    <p><strong>{{ 'profile.show.username'|trans }}:</strong> {{ user.username }}</p>
+    <p><strong>{{ 'profile.show.email'|trans }}:</strong> {{ user.email }}</p>
+</div>
+{% endblock %}
